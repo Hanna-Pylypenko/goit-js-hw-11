@@ -5,7 +5,9 @@
   "homepage": "https://Hanna-Pylypenko.github.io/goit-js-hw-11",
   "scripts": {
     "start": "parcel src/*.html",
+    "dev": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /goit-js-hw-11/"
+    
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.5.0",
+    "nodemon": "^2.0.16",
     "parcel": "^2.5.0",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
