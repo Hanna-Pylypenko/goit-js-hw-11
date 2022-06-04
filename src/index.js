@@ -38,9 +38,9 @@ function onSubmitSearch(e) {
     .catch(error => {
       console.log(error);
     });
-
-  onLoadMoreClick();
 }
+
+onLoadMoreClick();
 
 function onLoadMoreClick() {
   pageNumber += 1;
