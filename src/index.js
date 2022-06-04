@@ -2,7 +2,6 @@ import { fetchPictures } from './fetchPictures';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
-import simpleLightbox from 'simplelightbox';
 
 const searchForm = document.querySelector('.search-form');
 const galleryContainer = document.querySelector('.gallery');
@@ -74,25 +73,26 @@ function cardsRender(res) {
 
   newGallery = picsArray
     .map(
-      picture => `<div class="photo-card">
-    <a class="gallery__item" href="${picture.largeImageURL}">
-    <img src="${picture.webformatURL}" alt="${picture.tags}" loading="lazy" width="300px", height="200px"/>
-    </a>
-    <div class="info">
-    <p class="info-item">
-      <b>Likes </b>${picture.likes}
-     </p>
-    <p class="info-item">
-      <b>Views </b>${picture.views}
-    </p>
-    <p class="info-item">
-      <b>Comments </b>${picture.comments}
-    </p>
-    <p class="info-item">
-      <b>Downloads </b>${picture.downloads}
-    </p>
-    </div>
-    </div>`
+      picture =>
+        `<div class="photo-card">
+            <a class="gallery__item" href="${picture.largeImageURL}">
+                <img src="${picture.webformatURL}" alt="${picture.tags}" loading="lazy" width="300px", height="200px"/>
+            </a>
+            <div class="info">
+                <p class="info-item">
+                <b>Likes </b>${picture.likes}
+                </p>
+                <p class="info-item">
+                <b>Views </b>${picture.views}
+                </p>
+                <p class="info-item">
+                <b>Comments </b>${picture.comments}
+                </p>
+                <p class="info-item">
+                <b>Downloads </b>${picture.downloads}
+                </p>
+            </div>
+        </div>`
     )
     .join('');
 
@@ -100,9 +100,9 @@ function cardsRender(res) {
 }
 
 function additionalCardsRender(res) {
-  const picsArray = res.hits;
+  const additionalPicsArray = res.hits;
 
-  const newGallery = picsArray
+  const LoadMoreGallery = additionalPicsArray
     .map(
       picture => `<div class="photo-card">
     <a class="gallery__item" href="${picture.largeImageURL}">
@@ -126,5 +126,5 @@ function additionalCardsRender(res) {
     )
     .join('');
 
-  galleryContainer.insertAdjacentHTML('beforeend', newGallery);
+  galleryContainer.insertAdjacentHTML('beforeend', LoadMoreGallery);
 }
