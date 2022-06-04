@@ -46,6 +46,12 @@ function onLoadMoreClick() {
   pageNumber += 1;
   fetchPictures(searchItem, pageNumber)
     .then(res => {
+      if (res.hits.length === 0) {
+        loadMoreBtn.classList.remove('is-visible');
+        Notiflix.Notify.info(
+          "We're sorry, but you've reached the end of search results."
+        );
+      }
       additionalCardsRender(res);
       lightbox.refresh();
     })
@@ -95,12 +101,6 @@ function cardsRender(res) {
 }
 
 function additionalCardsRender(res) {
-  if (res.hits.length === 0) {
-    loadMoreBtn.classList.remove('is-visible');
-    Notiflix.Notify.info(
-      "We're sorry, but you've reached the end of search results."
-    );
-  }
   const additionalPicsArray = res.hits;
 
   const LoadMoreGallery = additionalPicsArray
