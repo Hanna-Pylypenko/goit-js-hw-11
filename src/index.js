@@ -53,7 +53,7 @@ function onLoadMoreClick() {
         );
       }
       additionalCardsRender(res);
-      lightbox.refresh();
+      //lightbox.refresh();
     })
     .catch(error => {
       console.log(error);
