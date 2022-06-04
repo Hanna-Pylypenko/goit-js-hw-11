@@ -8,6 +8,7 @@ body{
     align-items: center;
     justify-content: center;
     background-color: blanchedalmond;
+    padding-bottom: 15px;
 }
 .gallery{
     display: grid;
@@ -50,4 +51,25 @@ body{
         margin-right: 0;
     }
     
+}
+.load-more{
+    opacity: 0;
+    pointer-events: none;
+    background-color: rgb(225, 171, 32);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    color: aliceblue;
+    &:hover {
+            scale: 1.1;
+            background-color: rgb(240, 164, 236);
+            color: brown;
+        }
+    
+}
+.is-visible{
+    opacity: 1;
+    pointer-events: all;
+    cursor: pointer;
 }
