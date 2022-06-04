@@ -23,6 +23,9 @@ function onSubmitSearch(e) {
       if (res.totalHits > 0) {
         Notiflix.Notify.info(`Hooray! We found ${res.totalHits} images.`);
       }
+      if (galleryContainer.innerHTML !== '') {
+        galleryContainer.innerHTML = '';
+      }
       cardsRender(res);
       lightbox = new SimpleLightbox('.gallery a', {
         captions: true,
@@ -65,13 +68,8 @@ function cardsRender(res) {
     );
   }
 
-  if (galleryContainer.innerHTML !== '') {
-    galleryContainer.innerHTML = '';
-  }
-
   const picsArray = res.hits;
-
-  newGallery = picsArray
+  const newGallery = picsArray
     .map(
       picture =>
         `<div class="photo-card">
@@ -96,7 +94,7 @@ function cardsRender(res) {
     )
     .join('');
 
-  galleryContainer.innerHTML = newGallery;
+  galleryContainer.insertAdjacentHTML('beforeend', newGallery);
 }
 
 function additionalCardsRender(res) {
@@ -104,25 +102,26 @@ function additionalCardsRender(res) {
 
   const LoadMoreGallery = additionalPicsArray
     .map(
-      picture => `<div class="photo-card">
-    <a class="gallery__item" href="${picture.largeImageURL}">
-    <img src="${picture.webformatURL}" alt="${picture.tags}" loading="lazy" width="300px", height="200px"/>
-    </a>
-    <div class="info">
-    <p class="info-item">
-      <b>Likes </b>${picture.likes}
-     </p>
-    <p class="info-item">
-      <b>Views </b>${picture.views}
-    </p>
-    <p class="info-item">
-      <b>Comments </b>${picture.comments}
-    </p>
-    <p class="info-item">
-      <b>Downloads </b>${picture.downloads}
-    </p>
-    </div>
-    </div>`
+      picture =>
+        `<div class="photo-card">
+            <a class="gallery__item" href="${picture.largeImageURL}">
+            <img src="${picture.webformatURL}" alt="${picture.tags}" loading="lazy" width="300px", height="200px"/>
+            </a>
+            <div class="info">
+                <p class="info-item">
+                <b>Likes </b>${picture.likes}
+                </p>
+                <p class="info-item">
+                <b>Views </b>${picture.views}
+                </p>
+                <p class="info-item">
+                <b>Comments </b>${picture.comments}
+                </p>
+                <p class="info-item">
+                <b>Downloads </b>${picture.downloads}
+                </p>
+            </div>
+        </div>`
     )
     .join('');
 
