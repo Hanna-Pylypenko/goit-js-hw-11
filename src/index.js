@@ -25,6 +25,7 @@ function onSubmitSearch(e) {
     .then(res => {
       if (res.totalHits > 0) {
         Notiflix.Notify.info(`Hooray! We found ${res.totalHits} images.`);
+        console.log(`Hooray! We found ${res.totalHits} images.`);
       }
 
       cardsRender(res);
@@ -37,9 +38,8 @@ function onSubmitSearch(e) {
     .catch(error => {
       console.log(error);
     });
+  onLoadMoreClick();
 }
-
-onLoadMoreClick();
 
 function onLoadMoreClick() {
   pageNumber += 1;
