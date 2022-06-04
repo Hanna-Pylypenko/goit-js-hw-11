@@ -17,15 +17,16 @@ function onSubmitSearch(e) {
   pageNumber = 1;
   e.preventDefault();
   searchItem = e.currentTarget.elements.searchQuery.value.trim();
+  if (galleryContainer.innerHTML !== '') {
+    galleryContainer.innerHTML = '';
+  }
 
   fetchPictures(searchItem, pageNumber)
     .then(res => {
       if (res.totalHits > 0) {
         Notiflix.Notify.info(`Hooray! We found ${res.totalHits} images.`);
       }
-      if (galleryContainer.innerHTML !== '') {
-        galleryContainer.innerHTML = '';
-      }
+
       cardsRender(res);
       lightbox = new SimpleLightbox('.gallery a', {
         captions: true,
