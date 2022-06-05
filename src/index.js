@@ -41,6 +41,7 @@ function onSubmitSearch(e) {
     .catch(error => {
       console.log(error);
     });
+
   if (e.type === 'click') {
     onLoadMoreClick();
   }
