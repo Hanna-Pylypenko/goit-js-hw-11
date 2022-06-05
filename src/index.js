@@ -23,9 +23,12 @@ function onSubmitSearch(e) {
 
   fetchPictures(searchItem, pageNumber)
     .then(res => {
+      console.log(res.hits.length);
       if (res.totalHits > 0) {
         Notiflix.Notify.info(`Hooray! We found ${res.totalHits} images.`);
-        console.log(`Hooray! We found ${res.totalHits} images.`);
+      }
+      if (res.hits.length < 40) {
+        loadMoreBtn.classList.remove('is-visible');
       }
 
       cardsRender(res);
@@ -38,22 +41,25 @@ function onSubmitSearch(e) {
     .catch(error => {
       console.log(error);
     });
+  if (e.type === 'click') {
+    onLoadMoreClick();
+  }
 }
-
-onLoadMoreClick();
 
 function onLoadMoreClick() {
   pageNumber += 1;
+
   fetchPictures(searchItem, pageNumber)
     .then(res => {
       if (res.hits.length === 0) {
         loadMoreBtn.classList.remove('is-visible');
-        Notiflix.Notify.info(
+        Notiflix.Notify.warning(
           "We're sorry, but you've reached the end of search results."
         );
       }
+
       additionalCardsRender(res);
-      //lightbox.refresh();
+      lightbox.refresh();
     })
     .catch(error => {
       console.log(error);
