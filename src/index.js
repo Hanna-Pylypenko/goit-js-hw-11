@@ -17,6 +17,9 @@ function onSubmitSearch(e) {
   pageNumber = 1;
   e.preventDefault();
   searchItem = e.currentTarget.elements.searchQuery.value.trim();
+  if (loadMoreBtn.classList.contains('is-visible')) {
+    loadMoreBtn.classList.remove('is-visible');
+  }
   if (galleryContainer.innerHTML !== '') {
     galleryContainer.innerHTML = '';
   }
