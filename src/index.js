@@ -52,7 +52,7 @@ function onLoadMoreClick() {
 
   fetchPictures(searchItem, pageNumber)
     .then(res => {
-      if (res.hits.length === 0) {
+      if (res.hits.length < 40) {
         loadMoreBtn.classList.remove('is-visible');
         Notiflix.Notify.warning(
           "We're sorry, but you've reached the end of search results."
